@@ -1,3 +1,7 @@
+import axios from "axios";
 import { AUTH_USER } from "./types";
 
-export const signup = ({ email, password }) => dispatch => {};
+//formProps consists of the email and password
+export const signup = formProps => dispatch => {
+  axios.post("http://localhost3090/signup", formProps);
+};
