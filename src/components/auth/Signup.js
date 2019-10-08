@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
+import { compose } from "redux";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 
 class Signup extends Component {
   onSubmit = formProps => {
-    console.log(formProps);
+    this.props.signup(formProps);
   };
   render() {
     const { handleSubmit } = this.props;
@@ -35,4 +36,12 @@ class Signup extends Component {
   }
 }
 
-export default reduxForm({ form: "signup" })(Signup);
+// First argument of connect is the state we are passing.
+// Second argument of connect is the actions object
+export default compose(
+  connect(
+    null,
+    actions
+  ),
+  reduxForm({ form: "signup" })
+)(Signup);
