@@ -5,8 +5,14 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 
 class Signup extends Component {
+  // On submitting the form, pass in the email and password,
+  // and redirect the user if sign up was successful
   onSubmit = formProps => {
-    this.props.signup(formProps);
+    this.props.signup(formProps, () => {
+      // Use React-Router to redirect the user to /feature
+      // after signing up
+      this.props.history.push("/feature");
+    });
   };
   render() {
     const { handleSubmit } = this.props;
@@ -37,6 +43,8 @@ class Signup extends Component {
   }
 }
 
+// Set the error message if the user tries to sign up
+// with an email that was already used
 function mapStateToProps(state) {
   return { errorMessage: state.auth.errorMessage };
 }
