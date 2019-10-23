@@ -30,17 +30,22 @@ class Signup extends Component {
             autoComplete="new-password"
           />
         </fieldset>
+        <div>{this.props.errorMessage}</div>
         <button>Sign Up!</button>
       </form>
     );
   }
 }
 
+function mapStateToProps(state) {
+  return { errorMessage: state.auth.errorMessage };
+}
+
 // First argument of connect is the state we are passing.
 // Second argument of connect is the actions object
 export default compose(
   connect(
-    null,
+    mapStateToProps,
     actions
   ),
   reduxForm({ form: "signup" })
