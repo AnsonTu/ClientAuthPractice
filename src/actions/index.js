@@ -12,6 +12,8 @@ export const signup = (formProps, callback) => async dispatch => {
       formProps
     );
     dispatch({ type: AUTH_USER, payload: response.data.token });
+    // Persist the login state in the browser
+    localStorage.setItem("token", response.data.token);
     // Redirect the user
     callback();
   } catch (e) {
